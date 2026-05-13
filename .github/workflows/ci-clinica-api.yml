@@ -24,3 +24,6 @@ jobs:
 
     - name: Compilacion de artefactos (Release)
       run: dotnet build --no-restore --configuration Release
+
+    - name: Evaluacion de pruebas unitarias
+      run: dotnet test --no-build --verbosity normal --configuration Release
