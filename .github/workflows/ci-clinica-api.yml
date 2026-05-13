@@ -1,4 +1,4 @@
-﻿name: CI Clinica API .NET 8
+﻿name: Validacion Continua - Clinica Andina
 
 on:
   push:
@@ -7,20 +7,20 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  analisis_y_construccion:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Descargar código fuente
+    - name: Extraccion del repositorio fuente
       uses: actions/checkout@v4
 
-    - name: Configurar .NET 8
+    - name: Aprovisionamiento del SDK .NET 8
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restaurar dependencias
+    - name: Resolucion de dependencias (NuGet)
       run: dotnet restore
 
-    - name: Compilar proyecto
-      run: dotnet build --no-restore
+    - name: Compilacion de artefactos (Release)
+      run: dotnet build --no-restore --configuration Release
